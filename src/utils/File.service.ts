@@ -14,17 +14,15 @@ export const formatSize = (size: number) => {
 export const isAvailableToRead = (file: string) => {
     try {
         fs.accessSync(file, fs.constants.R_OK | fs.constants.W_OK);
-        console.log(file);
         return true;
     } catch (err) {
-        console.log('e : ' + err);
+        console.log('error : ' + err);
         return false;
     }
 };
 
 export const getFilesFromPath = (path: string) => {
     try{
-        console.log("===================");
         return fs
             .readdirSync(path)
             .filter((file: string) => isAvailableToRead(pathModule.join(path, file)))

@@ -2,6 +2,7 @@ import FileViewer from "./components/FileViewer/FileViewer";
 import {FormEvent, useEffect, useMemo, useState} from "react";
 import {getFilesFromPath} from "./utils/File.service";
 import {useFileContext} from "./contexts/FileContext";
+const pathModule = require('path');
 
 function App() {
     const [searchedValue, setSearchedValue] = useState('.');
@@ -23,7 +24,7 @@ function App() {
                 <input value={searchedValue} onChange={e => setSearchedValue(e.currentTarget.value)}/>
                 <button type="submit">Search</button>
             </form>
-            <hr className="my-4"/>
+            <hr className="my-4"/>{pathModule.toNamespacedPath(path)}
             <FileViewer files={files}/>
         </div>
     )

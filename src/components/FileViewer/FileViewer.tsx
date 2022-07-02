@@ -6,12 +6,16 @@ const pathModule = require('path');
 
 export default function FileViewer({files} :{files: FileType[]}){
     const {setPath} = useFileContext();
+
     const onOpen = (name: string) => {
         setPath(prev => pathModule.join(prev, name));
     };
 
+    const onBack = () => setPath(prev => pathModule.dirname(prev));
+
     return (
         <div>
+            <div onClick={onBack} className="hover:underline text-blue-700 hover:text-blue-600 cursor-pointer">retour</div>
             {files.map(({ name, isDirectory, size }: FileType, index: number) => {
                 return (
                     <div key={index}
