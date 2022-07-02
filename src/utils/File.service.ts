@@ -2,6 +2,9 @@ import {FileType} from "../types/FileType";
 const fs = require('fs');
 const pathModule = require('path');
 
+export const getCurrentDir = (path: string) => pathModule.resolve(path);
+export const getParentDir = (path: string) => pathModule.dirname(pathModule.resolve(path));
+
 export const formatSize = (size: number) => {
     const i :number = Math.floor(Math.log(size) / Math.log(1024));
     return (

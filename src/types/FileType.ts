@@ -1,5 +1,5 @@
 export interface FileType{
     name: string,
-    size: number;
+    size?: number;
     isDirectory: boolean
 }
