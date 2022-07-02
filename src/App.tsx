@@ -1,8 +1,8 @@
 import FileViewer from "./components/FileViewer/FileViewer";
 import {FormEvent, useEffect, useMemo, useState} from "react";
-import {getCurrentDir, getFilesFromPath, getParentDir} from "./utils/File.service";
+import {getCurrentDir, getFilesFromPath} from "./utils/File.service";
 import {useFileContext} from "./contexts/FileContext";
-const pathModule = require('path');
+import Input from "./components/input/Input";
 
 function App() {
     const [searchedValue, setSearchedValue] = useState(getCurrentDir('.'));
@@ -20,8 +20,8 @@ function App() {
 
     return (
         <div>
-            <form onSubmit={handleSubmit}>
-                <input value={searchedValue} onChange={e => setSearchedValue(e.currentTarget.value)}/>
+            <form onSubmit={handleSubmit} className="mx-10 my-2 flex space-x-2">
+                <Input label="Browse :" value={searchedValue} autoFocus onChange={e => setSearchedValue(e.currentTarget.value)}/>
                 <button type="submit">Search</button>
             </form>
             <hr className="my-4"/>

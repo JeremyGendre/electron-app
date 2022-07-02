@@ -2,7 +2,6 @@ import {FileType} from "../../types/FileType";
 import {useFileContext} from "../../contexts/FileContext";
 import {getParentDir} from "../../utils/File.service";
 import FileRow from "./FileRow";
-import ReplyIcon from "../icons/ReplyIcon";
 const pathModule = require('path');
 
 export default function FileViewer({files} :{files: FileType[]}){
