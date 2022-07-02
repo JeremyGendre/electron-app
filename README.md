@@ -1,3 +1,3 @@
-# Electron App
+# Electron File Explorer
 
-testing electron
+File explorer using Electron, React, tailwindcss & Vite.
