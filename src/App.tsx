@@ -1,39 +1,29 @@
-import {FileType} from "./types/FileType";
 import FileViewer from "./components/FileViewer/FileViewer";
-const fs = require('fs');
-const pathModule = require('path');
-
-const formatSize = (size: number) => {
-    const i :number = Math.floor(Math.log(size) / Math.log(1024));
-    return (
-        (size / Math.pow(1024, i)).toFixed(2) +
-        ' ' +
-        ['B', 'kB', 'MB', 'GB', 'TB'][i]
-    )
-};
-
-
-const files: FileType[] = fs
-    .readdirSync('.')
-    .map((file: string) => {
-        const stats = fs.statSync(pathModule.join('.', file));
-        return {
-            name: file,
-            size: stats.isFile() ? formatSize(stats.size ?? 0) : null,
-            isDirectory: stats.isDirectory()
-        }
-    })
-    .sort((a: FileType, b: FileType) => {
-        if (a.isDirectory === b.isDirectory) {
-            return a.name.localeCompare(b.name)
-        }
-        return a.isDirectory ? -1 : 1
-    });
+import {FormEvent, useEffect, useMemo, useState} from "react";
+import {getFilesFromPath} from "./utils/File.service";
+import {useFileContext} from "./contexts/FileContext";
 
 function App() {
+    const [searchedValue, setSearchedValue] = useState('.');
+    const {path, setPath} = useFileContext();
+    const files = useMemo(() => getFilesFromPath(path),[path]);
+
+    useEffect(() => {
+        if(searchedValue !== path) setSearchedValue(path);
+    },[path]);
+
+    const handleSubmit = (e: FormEvent) => {
+        e.preventDefault();
+        setPath(searchedValue);
+    };
 
     return (
         <div>
+            <form onSubmit={handleSubmit}>
+                <input value={searchedValue} onChange={e => setSearchedValue(e.currentTarget.value)}/>
+                <button type="submit">Search</button>
+            </form>
+            <hr className="my-4"/>
             <FileViewer files={files}/>
         </div>
     )
