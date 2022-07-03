@@ -5,6 +5,7 @@ import {useFileContext} from "./contexts/FileContext";
 import Input from "./components/Input/Input";
 import Button from "./components/Button/Button";
 import {useScroll} from "@jeremygendre/react-custom-hooks";
+import Breadcrumb from "./components/Breadcrumb/Breadcrumb";
 
 function App() {
     const [searchedValue, setSearchedValue] = useState(getCurrentDir('.'));
@@ -24,7 +25,7 @@ function App() {
 
     return (
         <div>
-            <div className="sticky top-0">
+            <div className="sticky top-0 z-10">
                 <form onSubmit={handleSubmit} className={`px-10 py-2 flex bg-white space-x-2 ${scrollY > 0 ? 'shadow-md' : ''}`}>
                     <Input label={scrollY > 0 ? undefined : 'Browse :'} value={searchedValue} autoFocus
                            onChange={e => setSearchedValue(e.currentTarget.value)}
@@ -33,6 +34,7 @@ function App() {
                 </form>
                 <hr className="mb-4"/>
             </div>
+            <Breadcrumb delimiter="\" className="px-2 mb-2"/>
             <FileViewer files={files}/>
         </div>
     )
