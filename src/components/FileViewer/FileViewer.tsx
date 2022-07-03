@@ -20,12 +20,22 @@ export default function FileViewer({files} :{files: FileType[]}){
                     <span>cancel</span>
                 </div>
             )}
-            <FileRow file={{isDirectory:true, name: '..'}} onClick={onBack}/>
-            {files.map((file: FileType, index: number) => {
-                return (
-                    <FileRow key={index} file={file} onClick={() => onOpen(file.name)}/>
-                )
-            })}
+            <table className="w-full">
+                <thead>
+                <tr className="text-left border-b">
+                    <th>Name</th>
+                    <th>Size</th>
+                </tr>
+                </thead>
+                <tbody>
+                <FileRow file={{isDirectory:true, name: '..'}} onClick={onBack}/>
+                {files.map((file: FileType, index: number) => {
+                    return (
+                        <FileRow key={index} file={file} onClick={() => onOpen(file.name)}/>
+                    )
+                })}
+                </tbody>
+            </table>
         </div>
     );
 }
