@@ -15,7 +15,7 @@ export default function Breadcrumb({delimiter, className, ...other}: PropsWithCh
     const handleClick = (index: number) => setPath(values.filter((v,i) => i <= index).join(delimiter));
 
     return (
-        <div className={`flex space-x-1 text-sm select-none ${className}`} {...other}>
+        <div className={`flex flex-wrap space-x-1 text-sm select-none ${className}`} {...other}>
             {values.map((value, index) => (
                 <>
                     {index !== 0 && <span className="my-auto"><ChevronRightIcon/></span>}
