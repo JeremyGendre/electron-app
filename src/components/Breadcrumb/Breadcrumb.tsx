@@ -17,14 +17,14 @@ export default function Breadcrumb({delimiter, className, ...other}: PropsWithCh
     return (
         <div className={`flex flex-wrap space-x-1 text-sm select-none ${className}`} {...other}>
             {values.map((value, index) => (
-                <>
+                <div key={index}>
                     {index !== 0 && <span className="my-auto"><ChevronRightIcon/></span>}
-                    <div key={index} onClick={() => handleClick(index)}
+                    <div onClick={() => handleClick(index)}
                          className="opacity-75 hover:underline cursor-pointer"
                     >
                         {value}
                     </div>
-                </>
+                </div>
             ))}
         </div>
     );
