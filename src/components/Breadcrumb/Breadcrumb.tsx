@@ -17,7 +17,7 @@ export default function Breadcrumb({delimiter, className, ...other}: PropsWithCh
     return (
         <div className={`flex flex-wrap space-x-1 text-sm select-none ${className}`} {...other}>
             {values.map((value, index) => (
-                <div key={index}>
+                <div key={index} className="flex">
                     {index !== 0 && <span className="my-auto"><ChevronRightIcon/></span>}
                     <div onClick={() => handleClick(index)}
                          className="opacity-75 hover:underline cursor-pointer"

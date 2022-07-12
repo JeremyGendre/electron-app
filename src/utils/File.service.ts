@@ -17,7 +17,7 @@ export const formatSize = (size: number) => {
 
 export const isAvailableToRead = (file: string) => {
     try {
-        fs.accessSync(file, fs.constants.R_OK | fs.constants.W_OK);
+        fs.accessSync(file, fs.constants.R_OK);
         return true;
     } catch (err) {
         console.log('error : ' + err);
