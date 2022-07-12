@@ -14,7 +14,8 @@ function createWindow() {
             contextIsolation: false,
             webSecurity: false
         },
-        icon: path.join(__dirname,'favicon.svg')
+        autoHideMenuBar: true,
+        icon: path.join(__dirname,'src','favicon.ico')
     });
 
     // and load the index.html of the app.

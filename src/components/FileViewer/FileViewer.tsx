@@ -14,7 +14,7 @@ export default function FileViewer({files} :{files: FileType[]}){
     const onBack = () => setPath(prev => getParentDir(prev));
 
     return (
-        <div>
+        <div className="px-1">
             {(previousPath && files.length === 0) && (
                 <div onClick={() => setPath(previousPath)} className="flex space-x-1 hover:underline text-blue-700 hover:text-blue-600 cursor-pointer">
                     <span>cancel</span>
