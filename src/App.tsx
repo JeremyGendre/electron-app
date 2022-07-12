@@ -6,10 +6,11 @@ import Input from "./components/Input/Input";
 import Button from "./components/Button/Button";
 import {useScroll} from "@jeremygendre/react-custom-hooks";
 import Breadcrumb from "./components/Breadcrumb/Breadcrumb";
+import FileRender from "./components/FileRender/FileRender";
 
 function App() {
     const [searchedValue, setSearchedValue] = useState(getCurrentDir('.'));
-    const {path, setPath} = useFileContext();
+    const {path, setPath, openedFilePath, setOpenedFilePath} = useFileContext();
     const files = useMemo(() => getFilesFromPath(path),[path]);
 
     const {scrollY} = useScroll();
@@ -36,6 +37,7 @@ function App() {
             </div>
             <Breadcrumb delimiter="\" className="px-2 mb-2"/>
             <FileViewer files={files}/>
+            {openedFilePath && <FileRender filePath={openedFilePath} onClose={() => {setOpenedFilePath(null)}}/>}
         </div>
     )
 }

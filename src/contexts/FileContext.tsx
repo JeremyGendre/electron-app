@@ -13,6 +13,8 @@ const FileContext = createContext<FileContextValue>(undefined!);
 export const useFileContext = () => useContext<FileContextValue>(FileContext);
 
 interface FileContextValue{
+    openedFilePath: string | null
+    setOpenedFilePath: Dispatch<SetStateAction<string|null>>,
     path: string
     setPath: Dispatch<SetStateAction<string>>,
     previousPath: string | null
@@ -20,6 +22,7 @@ interface FileContextValue{
 
 export default function FileContextProvider({children}: PropsWithChildren<{}>){
     const [path, setPath] = useState(getCurrentDir('.'));
+    const [openedFilePath, setOpenedFilePath] = useState<string|null>(null);
     const previousPath = useRef<string|null>(null);
 
     useEffect(() => {
@@ -28,7 +31,7 @@ export default function FileContextProvider({children}: PropsWithChildren<{}>){
 
     return (
         <FileContext.Provider value={{
-            path, setPath, previousPath: previousPath.current
+            path, setPath, previousPath: previousPath.current, openedFilePath, setOpenedFilePath
         }}>
             {children}
         </FileContext.Provider>
