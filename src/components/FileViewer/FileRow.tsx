@@ -18,7 +18,7 @@ export default function FileRow({file, className, onClick = () => {}, ...other}:
 
     return (
         <tr
-             className={`hover:bg-slate-100 transition duration-50 cursor-pointer ${className}`}
+             className={`hover:bg-slate-100 transition duration-50 cursor-pointer select-none ${className}`}
              onClick={(e) => file.isDirectory && onClick(e)}
              onDoubleClick={handleDoubleClick}
              {...other}
