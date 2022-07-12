@@ -14,8 +14,8 @@ export default function FileRender({filePath, onClose}: FileRenderProps) {
         setTimeout(onClose,500);
     });
     return (
-        <div className={`h-screen w-screen fixed top-0 left-0 bg-black/60 z-20`}>
-            <div ref={ref} className={`h-full absolute bg-white right-0 w-2/3 ${animation}`}>
+        <div className={`h-screen w-screen fixed top-0 left-0 bg-black/50 z-20`}>
+            <div ref={ref} className={`h-full absolute bg-white right-0 shadow-lg shadow-slate-500 w-2/3 ${animation}`}>
                 <object data={filePath} className="h-full w-full"/>
             </div>
         </div>
